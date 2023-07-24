@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>InfinityHunt</groupId>
+  <artifactId>InfinityHuntBot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Infinity Hunt Bot</name>
+  <description>Bot Telegram per la Caccia al Tesoro 2023</description>
+  <dependencies>
+	  	<dependency>
+		  <groupId>org.telegram</groupId>
+		  <artifactId>telegrambots</artifactId>
+		  <version>6.7.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/edu.stanford.nlp/stanford-corenlp -->
+		<dependency>
+		    <groupId>edu.stanford.nlp</groupId>
+		    <artifactId>stanford-corenlp</artifactId>
+		    <version>4.5.4</version>
+		</dependency>
+
+  </dependencies>  
+</project>
