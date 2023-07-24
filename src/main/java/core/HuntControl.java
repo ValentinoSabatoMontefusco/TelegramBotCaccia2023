@@ -15,15 +15,7 @@ public class HuntControl {
 	
 private static HashMap<Long, User> userMap = new HashMap<Long, User>();
 	
-	private static ArrayList<String> botQueries = new ArrayList<String>(
-			Arrays.asList("Complimenti per avermi raggiunto sin qui, pisciabroro che non sei altro. Ma la mia missione è troppo importante per affidarmi a chiunque. Dovrai (dovrete? xd) dimostrarmi di essere un alleato degli Avengers. Partiamo dal tuo nome. Come ti chiami?",
-					"Bando ai convenevoli! Dove si è schiantato il bombardiere dove mi ha ritrovato Nicola Furia?",
-					"Mmh, corretto. Tutti sanno che il capo dell'Hydra mio nemico è comunemente chiamato Teschio Rosso. Ma qual è il suo vero nome?",
-					"Te possino, 'sto fessa! Conosci anche il nome del mio migliore amico e alleato?",
-					"In realtà era Tammuzzo, ma anche questa risposta va bene. Pe' mmo è tutto, po' virimmo che ato c'amma mette 'nda 'sto coso, statti bbuono."));
 	
-	private  static List<String>[] correctAnswers = new List[] {null, List.of("polo nord", "artico"), List.of("johann schmidt", "schmidt"), 
-																List.of("bucky", "bucky barnes", "james buchanan barnes")};
 	
 	public static Boolean contains(Long id) {
 		
@@ -41,67 +33,7 @@ private static HashMap<Long, User> userMap = new HashMap<Long, User>();
 		userMap.clear();
 	}
 	
-	public static int checkAnswer(String input, List<String> answers) {
-		
-		int answer_length;
-		List<String> tokens;
-		int minimumEditDistance = Integer.MAX_VALUE;
-		for (String answer : answers) {
-			
-			answer_length = answer.split("\\s").length;
-			
-			tokens = tokenize(input, answer_length);
-			
-			
-			for (String token : tokens) {
-				
-				minimumEditDistance = Math.min(minimumEditDistance, StringUtils.editDistance(answer, token));
-				if (minimumEditDistance == 0)
-					break;
-			}
-			
-			if (minimumEditDistance == 0)
-				break;
-		}
-		
-		return minimumEditDistance;
-	}
 	
-	public static List<String> tokenize(String input, int token_length) {
-		
-		String words[] = input.split("\\s");
-		for (int i = 0; i < words.length; i++) {
-			String newWord = words[i].toLowerCase();
-			newWord.replaceAll("[^a-z0-9]", "");
-			words[i] = newWord;
-			
-		}
-		
-		List<String> tokens = new ArrayList<String>();
-		int i = 0;
-		StringBuilder token = new StringBuilder();
-		for (i = 0; i <= words.length - token_length; i++) {
-			token.setLength(0);
-			token.append(words[i]);
-			for (int j = 1; j < token_length; j++) {
-				
-				token.append(" ").append(words[i+j]);
-			}
-			
-			tokens.add(token.toString());
-		}
-		if (i == 0) {
-			token.setLength(0);
-			for (String word : words) {
-				token.append(word);
-			}
-			tokens.add(token.toString());
-		}
-		
-		return tokens;
-		
-		
-	}
 	
 	public static SendMessage getSendMessage(Update update) {
 		
@@ -115,7 +47,7 @@ private static HashMap<Long, User> userMap = new HashMap<Long, User>();
 		if (ctxUser == null) {
 			ctxUser = new User("unknown", chatId, 0);
 			insertNewUser(chatId, ctxUser);
-			sendMessage.setText(botQueries.get(ctxUser.getStatus()));
+			sendMessage.setText(BotAnswers.getQuery(ctxUser.getStatus()));
 			
 		} else {
 			
@@ -123,39 +55,39 @@ private static HashMap<Long, User> userMap = new HashMap<Long, User>();
 			
 			case 0: ctxUser.setName(inputText);
 					ctxUser.increaseStatus();
-					sendMessage.setText("Appicciti " + ctxUser.getName() + "! " + botQueries.get(ctxUser.getStatus()));
+					sendMessage.setText("Appicciti " + ctxUser.getName() + "! " + BotAnswers.getQuery(ctxUser.getStatus()));
 					break;
 					
-			case 1: if(checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) == 0) {
+			case 1: if(BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) == 0) {    
 						ctxUser.increaseStatus();
-						sendMessage.setText(botQueries.get(ctxUser.getStatus()));
-					} else if (checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) <= 2) {
+						sendMessage.setText(BotAnswers.getQuery(ctxUser.getStatus()));
+					} else if (BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) <= 2) {
 						
-						sendMessage.setText("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane");
+						sendMessage.setText(BotAnswers.closeAnswer());
 					}
 					break;
 					
-			case 2: if(checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) == 0) {
+			case 2: if(BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) == 0) {
 						ctxUser.increaseStatus();
-						sendMessage.setText(botQueries.get(ctxUser.getStatus()));
-					} else if (checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) <= 2) {
+						sendMessage.setText(BotAnswers.getQuery(ctxUser.getStatus()));
+					} else if (BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) <= 2) {
 						
-						sendMessage.setText("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane");
+						sendMessage.setText(BotAnswers.closeAnswer());
 					}
 					break;
 					
-			case 3: if(checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) == 0) {
+			case 3: if(BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) == 0) {
 						ctxUser.increaseStatus();
-						sendMessage.setText(botQueries.get(ctxUser.getStatus()));
-					} else if (checkAnswer(inputText, correctAnswers[ctxUser.getStatus()]) <= 2) {
+						sendMessage.setText(BotAnswers.getQuery(ctxUser.getStatus()));
+					} else if (BotAnswers.checkAnswer(inputText, ctxUser.getStatus()) <= 2) {
 						
-						sendMessage.setText("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane");
+						sendMessage.setText(BotAnswers.closeAnswer());
 					}
 				break;
 				
 			case 4: if(inputText.toLowerCase().contains("/reset")) {
 						ctxUser.setStatus(1);
-						sendMessage.setText(botQueries.get(ctxUser.getStatus()));
+						sendMessage.setText(BotAnswers.getQuery(ctxUser.getStatus()));
 			} else {
 				
 				sendMessage.setText("Se vuoi resettare il bot alla prima domanda diggita il comando /reset");
@@ -170,7 +102,7 @@ private static HashMap<Long, User> userMap = new HashMap<Long, User>();
 	
 	if (sendMessage.getText() == null || sendMessage.getText().length() == 0) {
 		
-		sendMessage.setText("Ma manco pe' ssogno, che cazzo stai ricenno? Piensici meglio");
+		sendMessage.setText(BotAnswers.wrongAnswer());
 	}
 		
 		return sendMessage;
