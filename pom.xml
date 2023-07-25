@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Infinity Hunt Bot</name>
   <description>Bot Telegram per la Caccia al Tesoro 2023</description>
+  
   <dependencies>
 	  	<dependency>
 		  <groupId>org.telegram</groupId>
@@ -17,6 +18,11 @@
 		    <artifactId>stanford-corenlp</artifactId>
 		    <version>4.5.4</version>
 		</dependency>
-
-  </dependencies>  
+  </dependencies>
+  
+  <properties>
+        <maven.compiler.source>1.10</maven.compiler.source>
+        <maven.compiler.target>1.10</maven.compiler.target>
+    </properties>  
+    
 </project>
