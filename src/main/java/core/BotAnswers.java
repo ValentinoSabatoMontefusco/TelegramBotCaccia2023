@@ -16,26 +16,37 @@ public class BotAnswers {
 					"Te possino, 'sto fessa! Conosci anche il nome del mio migliore amico e alleato?",
 					"In realtÃ  era Tammuzzo, ma anche questa risposta va bene. Pe' mmo Ã¨ tutto, po' virimmo che ato c'amma mette 'nda 'sto coso, statti bbuono."));
 	
-	private  static List<String>[] correctAnswers = new List[] {null, List.of("polo nord", "artico"), List.of("johann schmidt", "schmidt"), 
-																List.of("bucky", "bucky barnes", "james buchanan barnes")};
+	private  static List<List<String>> correctAnswers = new ArrayList<>();
 	
-	private static ArrayList<String> wrongSfottò = new ArrayList<>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "Vabbuò stai fore, non ci pozzo pensa\'", 
+	
+	static {
+		
+		correctAnswers.add(null);
+		correctAnswers.add(List.of("polo nord", "artico"));
+		correctAnswers.add(List.of("johann schmidt", "schmidt"));
+		correctAnswers.add(List.of("bucky", "bucky barnes", "james buchanan barnes"));
+		
+	}
+	
+
+	
+	private static ArrayList<String> wrongSfottimiento = new ArrayList<>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "Vabbuò stai fore, non ci pozzo pensa\'", 
 																	"Ma quante cacate rici?", "Manco Valintino è accossì fessa", "Si continui accossì 'o tesoro 'o viri co'o cannocchiale",
 																	"L'amma rice? E ricimmilo. Acciriti"));
 	
 	
-	private static ArrayList<String> closeSfottò = new ArrayList<>(Arrays.asList("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane", 
+	private static ArrayList<String> closeSfottimiento = new ArrayList<>(Arrays.asList("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane", 
 																"Non ha' ritto proprio 'na stronzata, ci sei quasi ja", "Quasi. Non poplio. Aggiusta quaccosina",
 																"Appara 'na ntecchietella e ha azzeccato, non si lontano", "Avissi sbagliato a scrive'? Controlla 'no poco"));
 	
 	public static String wrongAnswer() {
 		
-		return wrongSfottò.get(new Random().nextInt(wrongSfottò.size()));
+		return wrongSfottimiento.get(new Random().nextInt(wrongSfottimiento.size()));
 	}
 	
 	public static String closeAnswer() {
 		
-		return closeSfottò.get(new Random().nextInt(closeSfottò.size()));
+		return closeSfottimiento.get(new Random().nextInt(closeSfottimiento.size()));
 	}
 	
 	public static String getQuery(int index) {
@@ -48,7 +59,7 @@ public class BotAnswers {
 		
 		
 		int answer_length;
-		List<String> answers = correctAnswers[status];
+		List<String> answers = correctAnswers.get(status);
 		List<String> tokens;
 		int minimumEditDistance = Integer.MAX_VALUE;
 		for (String answer : answers) {
