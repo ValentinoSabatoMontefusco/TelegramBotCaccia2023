@@ -16,26 +16,26 @@ public class BotAnswers {
 					"Te possino, 'sto fessa! Conosci anche il nome del mio migliore amico e alleato?",
 					"In realtà era Tammuzzo, ma anche questa risposta va bene. Pe' mmo è tutto, po' virimmo che ato c'amma mette 'nda 'sto coso, statti bbuono."));
 	
-	private  static List<List<String>> correctAnswers = new ArrayList<>();
+	private  static List<List<String>> correctAnswers = new ArrayList<List<String>>();
 	
 	
 	static {
 		
 		correctAnswers.add(null);
-		correctAnswers.add(List.of("polo nord", "artico"));
-		correctAnswers.add(List.of("johann schmidt", "schmidt"));
-		correctAnswers.add(List.of("bucky", "bucky barnes", "james buchanan barnes"));
+		correctAnswers.add(Arrays.asList("polo nord", "artico"));
+		correctAnswers.add(Arrays.asList("johann schmidt", "schmidt"));
+		correctAnswers.add(Arrays.asList("bucky", "bucky barnes", "james buchanan barnes"));
 		
 	}
 	
 
 	
-	private static ArrayList<String> wrongSfottimiento = new ArrayList<>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "Vabbuò stai fore, non ci pozzo pensa\'", 
+	private static ArrayList<String> wrongSfottimiento = new ArrayList<String>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "Vabbuò stai fore, non ci pozzo pensa\'", 
 																	"Ma quante cacate rici?", "Manco Valintino è accossì fessa", "Si continui accossì 'o tesoro 'o viri co'o cannocchiale",
 																	"L'amma rice? E ricimmilo. Acciriti"));
 	
 	
-	private static ArrayList<String> closeSfottimiento = new ArrayList<>(Arrays.asList("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane", 
+	private static ArrayList<String> closeSfottimiento = new ArrayList<String>(Arrays.asList("Wa 'o ssa' ci stivi quasi, riprova co' quaccosa 'e simile che stai llane", 
 																"Non ha' ritto proprio 'na stronzata, ci sei quasi ja", "Quasi. Non poplio. Aggiusta quaccosina",
 																"Appara 'na ntecchietella e ha azzeccato, non si lontano", "Avissi sbagliato a scrive'? Controlla 'no poco"));
 	
