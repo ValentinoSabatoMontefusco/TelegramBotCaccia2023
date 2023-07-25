@@ -30,8 +30,8 @@ public class BotAnswers {
 	
 
 	
-	private static ArrayList<String> wrongSfottimiento = new ArrayList<>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "Vabbuò stai fore, non ci pozzo pensa\'", 
-																	"Ma quante cacate rici?", "Manco Valintino è accossì fessa", "Si continui accossì 'o tesoro 'o viri co'o cannocchiale",
+	private static ArrayList<String> wrongSfottimiento = new ArrayList<>(Arrays.asList("Ngul e quanta fai schif! Non m'o ccr'rev...", "VabbuÃ² stai fore, non ci pozzo pensa\'", 
+																	"Ma quante cacate rici?", "Manco Valintino Ã¨ accossÃ¬ fessa", "Si continui accossÃ¬ 'o tesoro 'o viri co'o cannocchiale",
 																	"L'amma rice? E ricimmilo. Acciriti"));
 	
 	
